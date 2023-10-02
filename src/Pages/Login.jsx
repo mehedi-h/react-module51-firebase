@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/UserProvider";
 
 const Login = () => {
 
   const { loginUser, loading } =  useContext(AuthContext)
+  const navigate = useNavigate()
 
   if (loading) {
     return <span className="loading loading-ring loading-lg flex justify-center items-center"></span>
@@ -14,6 +15,8 @@ const Login = () => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
+        e.target.reset()
+        navigate('/')
         console.log(email, password);
 
         loginUser(email, password)
