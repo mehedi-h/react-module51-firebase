@@ -1,21 +1,32 @@
-import { useContext } from "react";
+import { createContext, useState } from "react";
+import PropTypes from 'prop-types';
 
-const UserProvider = () => {
 
-    // 1. create context by any name
-    const AuthContext = useContext(null)
-    // 3. set provider value;
-    const authInfo = {name : 'one two three'}
+export const AuthContext = createContext(null)
+const UserProvider = ({children}) => {
+
+    const [user, setUser] = useState(null)
+
+    const authInfo = {user}
 
     return (
 
-        // 2. set provider
-        <UserProvider.Provider value={authInfo}>
-
-        </UserProvider.Provider>
+        <AuthContext.Provider value={authInfo}>
+            {children}
+        </AuthContext.Provider>
     );
 };
 
 export default UserProvider;
+UserProvider.propTypes = {
+    children: PropTypes.node
+}
 
-
+/*** *
+ * create context by any name and export it;
+ * set provider;
+ * set provider value;
+ * use the UserProvider in the main.jsx file;
+ * access the children in the middle of UserProvider by router provider as a component;
+ * get access in UserProvider by desctructuring as a children;
+ * ***/
