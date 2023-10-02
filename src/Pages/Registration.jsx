@@ -5,7 +5,11 @@ import { AuthContext } from "../Providers/UserProvider";
 
 const Registration = () => {
 
-    const { createUser } = useContext(AuthContext)
+    const { createUser, loading } = useContext(AuthContext)
+
+    if (loading) {
+      return <span className="loading loading-ring loading-lg"></span>
+  }
 
     const handleReg = e => {
         e.preventDefault()

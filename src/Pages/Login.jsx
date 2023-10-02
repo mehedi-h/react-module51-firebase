@@ -4,7 +4,11 @@ import { AuthContext } from "../Providers/UserProvider";
 
 const Login = () => {
 
-  const { loginUser } =  useContext(AuthContext)
+  const { loginUser, loading } =  useContext(AuthContext)
+
+  if (loading) {
+    return <span className="loading loading-ring loading-lg flex justify-center items-center"></span>
+  }
   
     const handleLogin = e => {
         e.preventDefault()
